@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useRef } from "react";
-import { Badge, Container, Navbar } from "react-bootstrap";
+import { Badge, Button, Container, Form, Navbar } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const AddMovie = () => {
@@ -48,7 +48,7 @@ const AddMovie = () => {
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end  gap-4">
             <Navbar.Text>
-              <Link to="/add" className="text-info text-decoration-none">
+              <Link to="/" className="text-info text-decoration-none">
                 Home
               </Link>
             </Navbar.Text>
@@ -78,29 +78,43 @@ const AddMovie = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Link to="/">Home</Link>
-      <br />
-      <br />
-      <form onSubmit={addMovieHandler}>
-        MovieName
-        <br />
-        <input
-          type="text"
-          placeholder="Movie Name"
-          ref={movie_Name_refrence}
-        ></input>
-        <br></br>
-        Rating
-        <br />
-        <input type="text" placeholder="rating" ref={movie_Rating}></input>
-        <br></br>
-        Description
-        <br />
-        <textarea rows="10" cols="10" ref={movieDescription}></textarea>
-        <br />
-        <br />
-        <button type="submit">submit</button>
-      </form>
+      <section className="bg-info py-5">
+        <div className="container_form bg-body -teritiary ">
+          <form onSubmit={addMovieHandler} className="p-5">
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Name"
+                ref={movie_Name_refrence}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Rating</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Rating"
+                ref={movie_Rating}
+              />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Description</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={9}
+                placeholder="Description"
+                ref={movieDescription}
+              />
+            </Form.Group>
+            <Button variant="info" type="submit">
+              Add Movie
+            </Button>
+          </form>
+        </div>
+      </section>
     </>
   );
 };

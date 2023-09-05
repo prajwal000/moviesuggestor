@@ -69,7 +69,7 @@ const Index = () => {
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end  gap-4">
             <Navbar.Text>
-              <Link to="/add" className="text-info text-decoration-none">
+              <Link to="/" className="text-info text-decoration-none">
                 Home
               </Link>
             </Navbar.Text>

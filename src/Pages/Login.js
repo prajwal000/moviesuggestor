@@ -38,7 +38,7 @@ function Login() {
     }
   };
   return (
-    <div>
+    <>
       <Link to="/">home</Link>
       login:
       <br />
@@ -53,7 +53,7 @@ function Login() {
         <input type="password" ref={loginPassword} />
         <button>login</button>
       </form>
-    </div>
+    </>
   );
 }
 
