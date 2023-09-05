@@ -119,8 +119,10 @@ const Index = () => {
       <section>
         <div>
           {loading ? <>loading...</> : <></>}
-          {loading && movies.length < 1 ? (
-            <div>No movies found</div>
+          {!loading && movies.length < 1 ? (
+            <div className="bg-white my-5 py-5 text-center">
+              <h2>No Movies Found</h2>
+            </div>
           ) : (
             <Container>
               <div>
@@ -138,7 +140,9 @@ const Index = () => {
                             <Card.Text>{a.rating}</Card.Text>
 
                             <Link to={`view/${a.id}`}>
-                              <Button variant="dark">View Details</Button>
+                              <Button className="bg-info border-0">
+                                View Details
+                              </Button>
                             </Link>
                           </Card.Body>
                         </Card>

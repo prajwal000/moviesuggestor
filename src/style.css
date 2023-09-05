@@ -8,3 +8,8 @@
 body {
   background: #10caf0;
 }
+.container_desc {
+  width: 700px;
+  margin: auto;
+  background: white;
+}
