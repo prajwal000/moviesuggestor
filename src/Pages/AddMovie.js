@@ -79,6 +79,7 @@ const AddMovie = () => {
         </Container>
       </Navbar>
       <section className="bg-info py-5">
+        <h4 className="py-1 text-center text-white">Add a Movie</h4>
         <div className="container_form bg-body -teritiary ">
           <form onSubmit={addMovieHandler} className="p-5">
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">

@@ -1,6 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Badge, Card, Col, Container, Navbar, Row } from "react-bootstrap";
+import {
+  Badge,
+  Button,
+  Card,
+  Col,
+  Container,
+  Navbar,
+  Row,
+} from "react-bootstrap";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const Index = () => {
@@ -119,7 +127,7 @@ const Index = () => {
                 <Row>
                   {movies.map((a) => {
                     return (
-                      <Col>
+                      <Col key={a.id}>
                         <Card style={{ width: "18rem" }}>
                           <Card.Img variant="top" src={a.image} />
                           <Card.Body>
@@ -128,6 +136,10 @@ const Index = () => {
                             </Card.Title>
                             <Card.Text className="p-2">{a.info}</Card.Text>
                             <Card.Text>{a.rating}</Card.Text>
+
+                            <Link to={`view/${a.id}`}>
+                              <Button variant="dark">View Details</Button>
+                            </Link>
                           </Card.Body>
                         </Card>
                       </Col>
