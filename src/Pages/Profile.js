@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const Profile = () => {
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState({});
   const history = useHistory();
   useEffect(() => {
     getProfile();
@@ -13,6 +13,7 @@ const Profile = () => {
     try {
       const response = await axios.get(
         "https://api.dynoacademy.com/test-api/v1/me",
+
         {
           timeout: 10000,
           headers: {
@@ -43,7 +44,7 @@ const Profile = () => {
     <>
       <Link to="/">Home</Link>
       <br />
-      Name: {userData.name}
+      Name:{userData.name}
       <br />
       email:{userData.email}
       <br />

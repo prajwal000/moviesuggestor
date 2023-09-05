@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Badge, Card, Col, Container, Navbar, Row } from "react-bootstrap";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const Index = () => {
@@ -57,26 +58,89 @@ const Index = () => {
 
   return (
     <>
-      <div>
+      <Navbar className="bg-body-tertiary">
+        <Container>
+          <Navbar.Brand href="#home">
+            <Link to="/" className="text-decoration-none">
+              <span className="text-info me-2 ">Movie</span>
+              <Badge bg="info">Suggestor</Badge>
+            </Link>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+          <Navbar.Collapse className="justify-content-end  gap-4">
+            <Navbar.Text>
+              <Link to="/add" className="text-info text-decoration-none">
+                Home
+              </Link>
+            </Navbar.Text>
+            <Navbar.Text>
+              <Link to="/add" className="text-info text-decoration-none">
+                Add Movie
+              </Link>
+            </Navbar.Text>
+            <Navbar.Text className="text-info">
+              {localStorage.getItem("accesstoken") ? (
+                <span>
+                  <Link
+                    to="/profile"
+                    className="text-info text-decoration-none"
+                  >
+                    Profile
+                  </Link>
+                </span>
+              ) : (
+                <div>
+                  <Link to="/login" className="text-info text-decoration-none">
+                    Login
+                  </Link>
+                </div>
+              )}
+            </Navbar.Text>
+            <Navbar.Text>
+              <input
+                type="text"
+                value={searchMovieText}
+                placeholder="search movies"
+                onChange={(e) => setSearchMovieText(e.target.value)}
+                className="border border-info p-2 rounded"
+              />
+            </Navbar.Text>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      <section>
         <div>
-          <Link to="/add">Add Movie</Link>
-
-          {localStorage.getItem("accesstoken") ? (
-            <>
-              <Link to="/profile">Profile</Link>
-            </>
+          {loading ? <>loading...</> : <></>}
+          {loading && movies.length < 1 ? (
+            <div>No movies found</div>
           ) : (
-            <div>
-              <Link to="/login"> login</Link>
-            </div>
+            <Container>
+              <div>
+                <Row>
+                  {movies.map((a) => {
+                    return (
+                      <Col>
+                        <Card style={{ width: "18rem" }}>
+                          <Card.Img variant="top" src={a.image} />
+                          <Card.Body>
+                            <Card.Title className="text-info">
+                              {a.name}
+                            </Card.Title>
+                            <Card.Text className="p-2">{a.info}</Card.Text>
+                            <Card.Text>{a.rating}</Card.Text>
+                          </Card.Body>
+                        </Card>
+                      </Col>
+                    );
+                  })}
+                </Row>
+              </div>
+            </Container>
           )}
         </div>
-        <input
-          type="text"
-          value={searchMovieText}
-          placeholder="search movies"
-          onChange={(e) => setSearchMovieText(e.target.value)}
-        />
+      </section>
+
+      <div>
         <span style={{ background: "red" }}>{searhErrorText}</span>
         <br />
 
@@ -96,38 +160,7 @@ const Index = () => {
         ) : (
           <div></div>
         )}
-
-        <div style={{ background: "#cccccc", padding: "10px" }}>
-          {loading ? <>loading...</> : <></>}
-          {loading && movies.length < 1 ? (
-            <div>No movies found</div>
-          ) : (
-            <div>
-              {movies.map((a) => {
-                return (
-                  <div key={a.id}>
-                    <Link to={`/view/${a.id}`}>
-                      <span style={{ fontWeight: "bolder" }}> {a.name}</span>
-                    </Link>
-                    <br />
-                    <img
-                      src={a.image}
-                      alt="movie-img"
-                      style={{ height: "100px" }}
-                    />
-                    <br />
-                    Info:{a.info}
-                    <br />
-                    {a.rating}
-                    <hr />
-                  </div>
-                );
-              })}
-            </div>
-          )}
-        </div>
       </div>
-      <section></section>
     </>
   );
 };

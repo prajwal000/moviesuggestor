@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useRef } from "react";
+import { Badge, Container, Navbar } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const AddMovie = () => {
@@ -36,6 +37,47 @@ const AddMovie = () => {
 
   return (
     <>
+      <Navbar className="bg-body-tertiary">
+        <Container>
+          <Navbar.Brand href="#home">
+            <Link to="/" className="text-decoration-none">
+              <span className="text-info me-2 ">Movie</span>
+              <Badge bg="info">Suggestor</Badge>
+            </Link>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+          <Navbar.Collapse className="justify-content-end  gap-4">
+            <Navbar.Text>
+              <Link to="/add" className="text-info text-decoration-none">
+                Home
+              </Link>
+            </Navbar.Text>
+            <Navbar.Text>
+              <Link to="/add" className="text-info text-decoration-none">
+                Add Movie
+              </Link>
+            </Navbar.Text>
+            <Navbar.Text className="text-info">
+              {localStorage.getItem("accesstoken") ? (
+                <span>
+                  <Link
+                    to="/profile"
+                    className="text-info text-decoration-none"
+                  >
+                    Profile
+                  </Link>
+                </span>
+              ) : (
+                <div>
+                  <Link to="/login" className="text-info text-decoration-none">
+                    Login
+                  </Link>
+                </div>
+              )}
+            </Navbar.Text>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
       <Link to="/">Home</Link>
       <br />
       <br />
